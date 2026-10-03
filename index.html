@@ -3,88 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadora de IMC - Explicación de Código y Programación</title>
+  <title>Calculadora de IMC</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Contenedor Principal -->
-  <div class="main-container">
-    
-    <!-- 1. MÓDULO DE LA CALCULADORA INTERACTIVA -->
-    <section class="calculator-card">
-      <div class="card-header">
-        <h2>Calculadora de IMC</h2>
-        <p class="subtitle">Índice de Masa Corporal en tiempo real</p>
-      </div>
+  <div class="calculator-card">
+    <h2>Calculadora de IMC</h2>
+    <p class="subtitle">Calcula tu Índice de Masa Corporal</p>
 
-      <!-- Formulario de Entrada de Datos -->
-      <form id="imc-form">
-        <div class="input-group">
-          <label for="peso">Peso Corporal (kg)</label>
-          <input type="number" id="peso" placeholder="Ej. 70" step="0.1" min="10" max="300" required>
-        </div>
+    <!-- Formulario -->
+    <form id="imc-form">
+      <input type="number" id="peso" placeholder="Peso en kg (ej. 70)" step="0.1" required>
+      <input type="number" id="altura" placeholder="Altura en cm (ej. 175)" step="0.1" required>
+      <button type="submit">Calcular</button>
+    </form>
 
-        <div class="input-group">
-          <label for="altura">Altura (cm)</label>
-          <input type="number" id="altura" placeholder="Ej. 175" step="0.1" min="50" max="250" required>
-        </div>
+    <!-- Resultado -->
+    <div id="resultado" class="resultado oculto">
+      <span class="imc-valor" id="imc-numero">0.0</span>
+      <p class="imc-estado" id="imc-clasificacion"></p>
+      <p class="imc-info" id="imc-mensaje"></p>
+    </div>
 
-        <button type="submit" id="btn-calcular">Calcular IMC</button>
-      </form>
-
-      <!-- Panel de Salida de Resultados Dinámicos -->
-      <div id="resultado" class="resultado oculto">
-        <span class="imc-valor" id="imc-numero">0.0</span>
-        <p class="imc-estado" id="imc-clasificacion">Normal</p>
-        <p class="imc-info" id="imc-mensaje"></p>
-      </div>
-    </section>
-
-    <!-- 2. EXPLICACIÓN CLARA DE LA PROGRAMACIÓN Y LÓGICA -->
-    <section class="code-explanation-card">
-      <div class="card-header">
-        <h3>📘 Explicación de la Programación</h3>
-        <p class="subtitle">Estructura, algoritmos y tecnologías utilizadas</p>
-      </div>
-
-      <div class="explanation-grid">
-        <!-- Bloque HTML -->
-        <article class="explanation-box">
-          <h4>1. Estructura HTML (Semántica)</h4>
-          <p>
-            Construye la interfaz mediante etiquetas semánticas (<code>&lt;form&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;button&gt;</code>), 
-            incorporando validación nativa de tipos y límites numéricos (<code>min</code>, <code>max</code>, <code>step</code>).
-          </p>
-        </article>
-
-        <!-- Bloque JavaScript y Algoritmo -->
-        <article class="explanation-box">
-          <h4>2. Lógica JavaScript (Algoritmo)</h4>
-          <p>La lógica se ejecuta en 4 pasos fundamentales:</p>
-          <ul>
-            <li><strong>Captura:</strong> Escucha el evento <code>submit</code> y previene la recarga con <code>e.preventDefault()</code>.</li>
-            <li><strong>Conversión:</strong> Convierte la altura de centímetros a metros: <code>altura(m) = cm / 100</code>.</li>
-            <li><strong>Fórmula Matemática:</strong> Aplica el cálculo estándar: <code>IMC = peso / (altura * altura)</code>.</li>
-            <li><strong>Clasificación:</strong> Evalúa rangos de la OMS mediante condicionales:
-              <br>• &lt; 18.5: <em>Bajo peso</em>
-              <br>• 18.5 a 24.9: <em>Peso normal</em>
-              <br>• 25.0 a 29.9: <em>Sobrepeso</em>
-              <br>• ≥ 30.0: <em>Obesidad</em>
-            </li>
-          </ul>
-        </article>
-
-        <!-- Bloque CSS -->
-        <article class="explanation-box">
-          <h4>3. Diseño CSS (Estilos y Reactividad)</h4>
-          <p>
-            Implementa una paleta oscura moderna con <strong>Flexbox / CSS Grid</strong>, bordes sutiles y estados dinámicos 
-            para retroalimentar visualmente al usuario según su resultado.
-          </p>
-        </article>
-      </div>
-    </section>
-
+    <!-- Resumen de Programación -->
+    <div class="code-summary">
+      <p><strong>Lógica:</strong> <code>IMC = peso / (altura/100)²</code></p>
+      <p><strong>Rangos OMS:</strong> &lt;18.5 Bajo | 18.5-24.9 Normal | 25-29.9 Sobrepeso | ≥30 Obesidad</p>
+    </div>
   </div>
 
   <script src="script.js"></script>
